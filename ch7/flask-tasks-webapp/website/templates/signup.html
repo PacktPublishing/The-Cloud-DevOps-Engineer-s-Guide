@@ -1,0 +1,85 @@
+{% extends "base.html" %} 
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+    .signup-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-top: 30px;
+    }
+
+    form {
+        width: 50%;
+        max-width: 400px;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .btn-primary {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="signup-container">
+    <form method="POST">
+        <h3>Sign Up</h3>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                name="email" 
+                placeholder="Enter Email"
+            />
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="firstName" 
+                name="firstName" 
+                placeholder="Enter First Name"
+            />
+        </div>
+        <div class="form-group">
+            <label for="password1">Password</label>
+            <input 
+                type="password" 
+                class="form-control" 
+                id="password1" 
+                name="password1" 
+                placeholder="Enter Password"
+            />
+        </div>
+        <div class="form-group">
+            <label for="password2">Password (confirm)</label>
+            <input 
+                type="password" 
+                class="form-control" 
+                id="password2" 
+                name="password2" 
+                placeholder="Confirm Password"
+            />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

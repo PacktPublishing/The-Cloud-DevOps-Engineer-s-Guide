@@ -1,0 +1,16 @@
+1- Make sure to check the files, terraform.tfvars, variables.tf and main.tf to make the necessary modifications to the variables, also check all the files in the modules folder to check if any extra adjustment is necessary.
+
+2- To use this terraform project do the following:
+open a terminal windows inside the terraform-ecs folder and insert the commands bellow one by one
+
+terraform init
+terraform validate
+terraform plan '-out=terraform.tfstate'
+terraform apply "terraform.tfstate"
+
+after inserting "terraform plan" check all the itens that will be created, if everything is okay proceed with "terraform apply"
+
+
+3- To follow along with the pipeline exercise you will need Roles with proper permitions for CodePipeline and CodeBuild, go to cloudformation and create a new stack with the provided template 'pipeline-roles.yml" to create the necessary roles, you can chnage the name of the role in the template to best fit you needs.
+
+4- In the flask-tasks-webapp don't forget to properly populate the buildspec.yml file before using it.

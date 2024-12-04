@@ -1,0 +1,85 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    .tasks-container {
+        margin-top: 20px;
+    }
+
+    .tasks-header {
+        text-align: center;
+    }
+
+    .tasks-list {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .task-item {
+        font-size: 1.2em;
+    }
+
+    .form-check-input {
+        margin-right: 0.5em;
+    }
+
+    /* .form-check-label {
+        transition: color 0.3s, text-decoration 0.3s;
+    } */
+
+    .form-check-label.checked {
+        text-decoration: line-through;
+        color: #28a745;
+    }
+
+    .add-task-form {
+        width: 60%;
+        margin: 20px auto;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+</style>
+
+<div class="tasks-container">
+    <h1 class="tasks-header">Tasks</h1>
+    <div class="d-flex justify-content-center">
+        <ul class="list-group list-group-flush tasks-list" id="tasks">
+            {% for task in user.tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center task-item">
+                <div class="form-check d-flex align-items-center">
+                    <input 
+                        class="form-check-input" 
+                        type="checkbox" 
+                        value="" 
+                        id="taskCheckbox{{ task.id }}" 
+                        onClick="toggleTask({{ task.id }}, this.checked)" 
+                        {% if task.is_done %}checked{% endif %}
+                    >
+                    <label 
+                        class="form-check-label {% if task.is_done %}checked{% endif %}" 
+                        for="taskCheckbox{{ task.id }}"
+                    >
+                        {{ task.text }}
+                    </label>
+                </div>
+                <button type="button" class="close" onClick="deleteTask({{ task.id }})">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="d-flex justify-content-center">
+        <form method="POST" class="add-task-form">
+            <textarea name="task" id="task" class="form-control"></textarea>
+            <br />
+            <div align="center">
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
