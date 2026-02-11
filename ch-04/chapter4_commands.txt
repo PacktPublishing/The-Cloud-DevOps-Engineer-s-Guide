@@ -1,0 +1,54 @@
+//01-project_setup
+cd ~/devops-book-projects
+mkdir simple-flask-app && cd simple-flask-app
+
+//02-build_docker_image
+docker build -t simple-flask-app .
+
+//03-run_container
+docker run -p 4000:8080 -d --name my-web-server simple-flask-app
+
+//04-container_management
+# List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+
+# View container logs
+docker logs my-web-server
+
+# Stop container
+docker stop my-web-server
+
+# Start container
+docker start my-web-server
+
+# Remove container
+docker rm my-web-server
+
+//05-image_management
+# List local images
+docker images
+
+# Remove image
+docker rmi simple-flask-app
+
+//06-docker_compose_commands
+# Start services (foreground)
+docker-compose up
+
+# Stop and remove services, networks, containers
+docker-compose down
+
+//07-tag_image
+docker tag simple-flask-app yourusername/simple-flask-app:1.0.0
+
+//08-docker_login
+docker login
+
+//09-push_image
+docker push yourusername/simple-flask-app:1.0.0
+
+//10-run_from_dockerhub
+docker run -p 4000:8080 yourusername/simple-flask-app:1.0.0

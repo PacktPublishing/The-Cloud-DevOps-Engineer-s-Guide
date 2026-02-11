@@ -1,0 +1,15 @@
+//01-create_tests_directory
+mkdir tests
+touch tests/test_app.py
+
+//02-create_github_workflow_directory
+mkdir -p .github/workflows
+
+//03-git_commit_ci
+git add .
+git commit -m "ci: Add pytest and initial CI workflow"
+git push origin main
+
+//04-terraform_commands_reference
+terraform -chdir=terraform init
+terraform -chdir=terraform apply -auto-approve -var="ecr_image_identifier=<IMAGE_URI>"

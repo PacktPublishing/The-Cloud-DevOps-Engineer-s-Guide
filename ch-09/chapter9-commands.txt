@@ -1,0 +1,19 @@
+//01-terraform_prerequisite_command
+terraform apply
+
+//02-iam_roles_reference
+Required IAM Roles:
+
+1. CodePipeline Role (AWS service trusted entity – CodePipeline use case)
+
+2. CodeBuild Role (AWS service trusted entity – CodeBuild use case)
+   - Must allow:
+     - CloudWatch logging
+     - ECR push permissions
+
+3. CodeDeploy Role (AWS service trusted entity – CodeDeploy use case)
+   - Attach AWSCodeDeployRoleForECS policy
+
+//03-codeguru_pipeline_integration_note
+CodeGuru can be added as a pipeline action after the Source stage.
+If critical issues are detected, manual approval can be required before continuing.

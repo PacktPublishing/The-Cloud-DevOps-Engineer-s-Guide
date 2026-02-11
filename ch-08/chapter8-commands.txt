@@ -1,0 +1,50 @@
+//01-install_kubectl
+macos: brew install kubectl
+
+windows: choco install kubernetes-cli
+or scoop install kubectl
+
+linux: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
+
+//02-install_minikube
+macos: brew install minikube
+
+windows: choco install minikube
+
+linux: curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+
+//03-start_minikube_cluster
+minikube start
+
+//04-verify_cluster
+kubectl cluster-info
+
+kubectl get nodes
+
+//05-apply_manifests
+kubectl apply -f deployment.yml
+kubectl apply -f service.yml
+
+//06-inspect_resources
+kubectl get deployments
+
+kubectl get pods
+
+kubectl get services
+
+//06-access_service
+minikube service flask-app-service
+
+//07-install_helm
+https://helm.sh/docs/intro/install/
+
+//08-add_bitnami_repo
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+//09-install_nginx_chart
+helm install my-nginx bitnami/nginx
+
+//10-list_helm_releases
+helm list

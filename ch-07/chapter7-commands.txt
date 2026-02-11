@@ -1,0 +1,13 @@
+//01-Create project directory
+cd ~/devops-book-projects 
+mkdir terraform-pipeline && cd terraform-pipeline
+
+//02-Re-initialize Terraform after adding remote backend
+terraform init
+
+//03-Initialize repository and push to GitHub
+git init 
+git add . 
+git commit -m "feat: Initial Terraform setup for staging S3 bucket" 
+git remote add origin https://github.com/YourUsername/terraform-pipeline.git 
+git push -u origin main

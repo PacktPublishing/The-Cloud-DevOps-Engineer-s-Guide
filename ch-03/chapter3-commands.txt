@@ -1,0 +1,88 @@
+//01-initialize_repository
+# Navigate to project directory
+cd ~/devops-book-projects/my-first-website
+
+# Initialize Git repository
+git init
+
+//02-basic_git_workflow
+# Check repository status
+git status
+
+# Stage all files
+git add .
+
+# Commit staged changes
+git commit -m "Initial commit: Add project structure and README"
+
+# Check status again
+git status
+
+//03-clone_repository
+# Navigate to parent projects directory
+cd ~/devops-book-projects
+
+# Clone remote repository
+git clone https://github.com/YourUsername/my-devops-project.git
+
+# Enter cloned directory
+cd my-devops-project
+
+# List files
+ls
+
+//04-create_feature_branch
+# Create and switch to feature branch
+git checkout -b feature/add-homepage
+
+# Create new HTML file
+touch index.html
+
+# Open project in VS Code
+code .
+
+//05-commit_and_push_feature
+# Check status
+git status
+
+# Stage specific file
+git add index.html
+
+# Commit with conventional commit message
+git commit -m "feat: Add initial index.html homepage"
+
+# Push new branch and set upstream
+git push -u origin feature/add-homepage
+
+//06-update_local_main
+# Switch to main branch
+git checkout main
+
+# Pull latest changes from remote
+git pull origin main
+
+//07-merge_conflict_workflow
+# Switch back to feature branch
+git checkout feature/update-readme-A
+
+# Attempt to merge main into feature branch
+git merge main
+
+//08-resolve_conflict_and_push
+# After manually resolving conflict in README.md
+
+# Stage resolved file
+git add README.md
+
+# Complete merge commit
+git commit
+
+# Push updated feature branch
+git push origin feature/update-readme-A
+
+//09-remote_sync_commands
+# Push local commits to remote
+git push
+
+# Pull latest changes from remote
+git pull

@@ -1,0 +1,1 @@
+bucket_name = "my-super-unique-bucket-from-a-variable"

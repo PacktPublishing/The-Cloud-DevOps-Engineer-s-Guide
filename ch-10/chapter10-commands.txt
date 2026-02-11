@@ -1,0 +1,10 @@
+//01-run_elk_stack
+docker-compose up
+
+//02-observability_ports_reference
+Kibana UI:      http://localhost:5601
+Prometheus UI:  http://localhost:9090
+Grafana UI:     http://localhost:3000
+
+//03-docker_logs_reference
+docker logs <container_id>

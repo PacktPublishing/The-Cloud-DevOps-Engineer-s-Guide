@@ -1,0 +1,24 @@
+//01-start_sonarqube
+docker-compose up -d
+
+//02-view_sonarqube_logs
+docker-compose logs -f sonarqube
+
+//03-sonarscanner_docker_command
+docker run \
+    --rm \
+    -v "$(pwd):/usr/src" \
+    sonarsource/sonar-scanner-cli \
+    -Dsonar.projectKey=<YOUR_PROJECT_KEY> \
+    -Dsonar.sources=. \
+    -Dsonar.host.url=http://host.docker.internal:9000 \
+    -Dsonar.login=<YOUR_SONARQUBE_TOKEN>
+
+//04-install_snyk_cli
+npm install -g snyk
+
+//05-snyk_auth
+snyk auth
+
+//06-snyk_test
+snyk test

@@ -1,0 +1,6 @@
+[
+  {
+    "name": "pastel-notes-container",
+    "imageUri": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/pastel-notes-app:TAG"
+  }
+]

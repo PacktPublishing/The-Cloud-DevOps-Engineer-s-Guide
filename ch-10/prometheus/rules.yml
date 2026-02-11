@@ -1,0 +1,10 @@
+groups:
+- name: example
+  rules:
+  - alert: HighErrorRate
+    expr: job:request_latency_seconds:mean5m{job="my-app"} > 0.5
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: High request latency
