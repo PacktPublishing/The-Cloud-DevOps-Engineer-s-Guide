@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 340 10% 25%;
+
+    --card: 350 100% 98%;
+    --card-foreground: 340 10% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 10% 25%;
+
+    --primary: 350 100% 86%;
+    --primary-foreground: 340 30% 25%;
+
+    --secondary: 48 100% 90%;
+    --secondary-foreground: 40 30% 25%;
+
+    --muted: 350 30% 96%;
+    --muted-foreground: 340 10% 45%;
+
+    --accent: 48 100% 90%;
+    --accent-foreground: 40 30% 25%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 350 50% 90%;
+    --input: 350 50% 90%;
+    --ring: 350 100% 86%;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-cute;
+    background: linear-gradient(135deg, #FFF5F7 0%, #FFFAEB 50%, #FFEBEF 100%);
+    min-height: 100vh;
+  }
+}
+
+/* Custom scrollbar for the cute aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF5F7;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FFB6C1 0%, #FFFACD 100%);
+  border-radius: 10px;
+  border: 2px solid #FFF5F7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF91A4 0%, #FFE4B5 100%);
+}
+
+/* Cute selection color */
+::selection {
+  background-color: rgba(255, 182, 193, 0.4);
+  color: inherit;
+}

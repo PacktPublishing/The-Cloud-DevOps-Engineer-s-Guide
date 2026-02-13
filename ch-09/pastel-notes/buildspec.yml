@@ -1,0 +1,52 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR..."
+      - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/pastel-notes-app
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      
+      - echo "Fetching EFS ID from SSM..."
+      - EFS_ID=$(aws ssm get-parameter --name "/pastel-notes/efs-id" --query "Parameter.Value" --output text)
+      
+      - echo "export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID" > env_vars.sh
+      - echo "export REPOSITORY_URI=$REPOSITORY_URI" >> env_vars.sh
+      - echo "export IMAGE_TAG=$IMAGE_TAG" >> env_vars.sh
+      - echo "export EFS_ID=$EFS_ID" >> env_vars.sh
+      
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+
+  build:
+    commands:
+      - . ./env_vars.sh
+      
+      - echo "Build started on $(date)"
+      - echo "Building the Docker image..."
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - . ./env_vars.sh
+      
+      - echo "Build completed on $(date)"
+      - echo "Pushing the Docker images to ECR..."
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      
+      - echo "Creating imageDetail.json file..."
+      - printf '{"ImageURI":"%s"}' "$REPOSITORY_URI:$IMAGE_TAG" > imageDetail.json
+      
+      - echo "Injecting configuration into task definition..."
+      
+      - sed -i "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/g" taskdef.json
+      - sed -i "s|<IMAGE_NAME>|$REPOSITORY_URI:$IMAGE_TAG|g" taskdef.json
+      - sed -i "s/<EFS_ID>/$EFS_ID/g" taskdef.json
+
+artifacts:
+  files:
+    - imageDetail.json
+    - appspec.yml
+    - taskdef.json

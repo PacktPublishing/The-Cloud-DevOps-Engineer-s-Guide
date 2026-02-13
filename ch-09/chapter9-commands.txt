@@ -1,0 +1,9 @@
+//01-terraform_prerequisite_command
+terraform init
+terraform validate
+terraform plan
+terraform apply
+
+//02-codeguru_pipeline_integration_note
+CodeGuru can be added as a pipeline action after the Source stage.
+If critical issues are detected, manual approval can be required before continuing.
