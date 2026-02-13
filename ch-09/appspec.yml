@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "<TASK_DEFINITION_ARN>"
+        TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
-          ContainerName: "pastel-notes-container"
-          ContainerPort: 80
+          ContainerName: "pastel-notes-app"
+          ContainerPort: 3000
