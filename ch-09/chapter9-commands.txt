@@ -1,0 +1,12 @@
+//01-terraform_prerequisite_command
+terraform init
+terraform validate
+terraform plan
+terraform apply
+
+//02-Creating-your-own-app-repository
+download the pastel-notes folder and create a repo on your own github with the contents inside the pastel-notes folder in the root of the repo.
+
+//03-codeguru_pipeline_integration_note
+CodeGuru can be added as a pipeline action after the Source stage.
+If critical issues are detected, manual approval can be required before continuing.
